@@ -4,12 +4,13 @@ import "./Dashboard/styles.css";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { removeUser, updateUser } from "../actions/actions";
-import { Link, useLocation } from "react-router-dom";
+import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function UpdateUsers() {
   const [disable, setDisable] = useState(false);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const location = useLocation();
   const data = location.state.data;
@@ -125,9 +126,7 @@ function UpdateUsers() {
       </button>
       <br></br>
 
-      <Link to="/getList">
-        <button className="backbtn">Back to Dashboard</button>
-      </Link>
+        <button className="backbtn" onClick={()=>{navigate("/getList");}}>Back to Dashboard</button>
     </div>
   );
 }
