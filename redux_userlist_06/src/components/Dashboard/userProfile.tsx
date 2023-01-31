@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+
 import { UserDetails } from "../../interfaces";
+
 import "./styles.css";
 
-export default function UserProfile(props: any) {
+const UserProfile = (props: any)=> {
   const details: UserDetails = props.data;
 
   return (
@@ -15,3 +17,5 @@ export default function UserProfile(props: any) {
     </Link>
   );
 }
+
+export default UserProfile;

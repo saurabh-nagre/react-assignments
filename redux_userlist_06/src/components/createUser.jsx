@@ -1,14 +1,18 @@
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import "./Dashboard/styles.css";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { insertUser } from "../actions/actions";
-import * as constants from "../constants/constants";
-import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 
-function CreateUsers() {
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+import { insertUser } from "../actions/actions";
+
+import * as constants from "../constants/constants";
+
+import "./Dashboard/styles.css";
+
+const CreateUsers = () => {
   const [disable, setDisable] = useState(false);
   const dispatch = useDispatch();
 
@@ -16,7 +20,7 @@ function CreateUsers() {
   const { id } = location.state;
 
   const validationSchema = Yup.object().shape({
-    id: Yup.number().required("should be unique"),
+    id: Yup.number().required("should be unique") ,
     first_name: Yup.string().required("It is required"),
     last_name: Yup.string().required("It is required"),
     email: Yup.string().email("Enter correct email").required("it is required"),
@@ -47,7 +51,6 @@ function CreateUsers() {
   });
   return (
     <div className="app">
-      {/* <div>{JSON.stringify(formik)}</div> */}
       <img src={constants.DEFAULTIMAGE} alt="User Profile" className="image" />
 
       <form method="post">
@@ -60,8 +63,9 @@ function CreateUsers() {
           onBlur={formik.handleBlur}
           placeholder="Enter Unique Id"
           disabled
-        ></input>
-        <br></br>
+        />
+        <br/>
+        {/* <ErrorMessage name="id"/> */}
         {formik.errors.id && <p className="error">*{formik.errors.id}</p>}
 
         <input
@@ -72,8 +76,9 @@ function CreateUsers() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter First Name"
-        ></input>
-        <br></br>
+        />
+        <br/>
+        {/* <ErrorMessage name="first_name">{msg=><div>{msg}</div>}</ErrorMessage> */}
         {formik.errors.first_name && (
           <p className="error">*{formik.errors.first_name}</p>
         )}
@@ -86,8 +91,8 @@ function CreateUsers() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter Last Name"
-        ></input>
-        <br></br>
+        />
+        <br/>
         {formik.errors.last_name && (
           <p className="error">*{formik.errors.last_name}</p>
         )}
@@ -100,10 +105,10 @@ function CreateUsers() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter email"
-        ></input>
-        <br></br>
+        />
+        <br/>
         {formik.errors.email && <p className="error">{formik.errors.email}</p>}
-        <br></br>
+        <br/>
 
         <button
           type="submit"
@@ -120,6 +125,6 @@ function CreateUsers() {
       </Link>
     </div>
   );
-}
+};
 
 export default CreateUsers;

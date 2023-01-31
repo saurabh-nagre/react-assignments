@@ -1,13 +1,16 @@
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import "./Dashboard/styles.css";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { removeUser, updateUser } from "../actions/actions";
-import { Link, redirect, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function UpdateUsers() {
+import {useLocation, useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+
+import { removeUser, updateUser } from "../actions/actions";
+
+import "./Dashboard/styles.css";
+
+const UpdateUsers = ()=> {
   const [disable, setDisable] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,11 +18,10 @@ function UpdateUsers() {
   const location = useLocation();
   const data = location.state.data;
 
-  const deleteUser = ()=>{
-    
+  const deleteUser = () => {
     dispatch(removeUser(data));
-    setDisable(true)
-  }
+    setDisable(true);
+  };
   const validationSchema = Yup.object().shape({
     id: Yup.number().required("should be unique"),
     first_name: Yup.string().required("It is required"),
@@ -36,13 +38,16 @@ function UpdateUsers() {
     },
     onSubmit: (values) => {
       setDisable(true);
-      dispatch(updateUser({...values,avatar:data.avatar}));
+      dispatch(updateUser({ ...values, avatar: data.avatar }));
 
       axios
-        .put("https://reqres.in/api/users/"+Number(data.id).toString(), values)
+        .put(
+          "https://reqres.in/api/users/" + Number(data.id).toString(),
+          values
+        )
         .then((value) => {
           console.log(value);
-          setDisable(false)
+          setDisable(false);
         })
         .catch((reason) => {
           console.log(reason);
@@ -63,8 +68,8 @@ function UpdateUsers() {
           className="input"
           value={formik.values.id}
           disabled
-        ></input>
-        <br></br>
+        />
+        <br/>
         {formik.errors.id && <p className="error">*{formik.errors.id}</p>}
 
         <input
@@ -75,8 +80,8 @@ function UpdateUsers() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter First Name"
-        ></input>
-        <br></br>
+        />
+        <br/>
         {formik.errors.first_name && (
           <p className="error">*{formik.errors.first_name}</p>
         )}
@@ -89,8 +94,8 @@ function UpdateUsers() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter Last Name"
-        ></input>
-        <br></br>
+        />
+        <br/>
         {formik.errors.last_name && (
           <p className="error">*{formik.errors.last_name}</p>
         )}
@@ -103,10 +108,10 @@ function UpdateUsers() {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           placeholder="Enter email"
-        ></input>
-        <br></br>
+        />
+        <br/>
         {formik.errors.email && <p className="error">{formik.errors.email}</p>}
-        <br></br>
+        <br/>
 
         <button
           type="submit"
@@ -124,9 +129,16 @@ function UpdateUsers() {
       >
         Delete User with ID {Number(data.id)}
       </button>
-      <br></br>
+      <br/>
 
-        <button className="backbtn" onClick={()=>{navigate("/getList");}}>Back to Dashboard</button>
+      <button
+        className="backbtn"
+        onClick={() => {
+          navigate("/getList");
+        }}
+      >
+        Back to Dashboard
+      </button>
     </div>
   );
 }

@@ -1,14 +1,19 @@
-import "./styles.css";
 import { useEffect } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
-import { addUserList } from "../../actions/actions";
-import { UserDetails } from "../../interfaces";
-import UserProfile from "./userProfile";
 import axios from "axios";
-import * as constants from "../../constants/constants";
 import { Link } from "react-router-dom";
 
-function GetList() {
+import { addUserList } from "../../actions/actions";
+import UserProfile from "./userProfile";
+
+import { UserDetails } from "../../interfaces";
+import * as constants from "../../constants/constants";
+
+import "./styles.css";
+
+const GetList = () => {
+  
   const usersState: UserDetails[] = useSelector(
     (state: any) => state.UserReducer
   );
@@ -38,7 +43,7 @@ function GetList() {
 
   return (
     <div className="main">
-      <Link to="/createUser" state = {{id:usersState.length+1}}>
+      <Link to="/createUser" state={{ id: usersState.length + 1 }}>
         <div className="profile">
           <img
             src={constants.PROFILEADD}
@@ -55,6 +60,6 @@ function GetList() {
       })}
     </div>
   );
-}
+};
 
 export default GetList;
