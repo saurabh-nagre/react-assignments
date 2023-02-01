@@ -1,0 +1,71 @@
+.profile {
+    height:200px;
+    width: 200px;
+    border: 1px solid #000000;
+    margin: 10px;
+}
+
+.main{
+    margin-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content:space-around;
+}
+.image{
+    height: 150px;
+    width: 150px;
+}
+.input {
+    width: 96%;
+    margin-bottom: 10px;
+    padding: 2%;
+    margin-inline: auto;
+}
+
+.error {
+    color: #ff0000;
+    font-size: small;
+}
+
+.submit {
+    padding: 10px;
+    font-size: medium;
+    font-weight: 600;
+    width: 50%;
+    background-color: #df954c;
+    border: 0px;
+    border-radius: 10px;
+}
+
+.submit:hover {
+    background-color: #f0caa4;
+}
+
+.app{
+    margin-inline: 30%;
+    width: 40%;
+    text-align: center;
+}
+
+.backbtn{
+    margin: 5%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: medium;
+    
+}
+
+.deleteBtn{
+    padding: 10px;
+        font-size: medium;
+        font-weight: 600;
+        width: 50%;
+        background-color: #c22822;
+        border: 0px;
+        border-radius: 10px;
+        margin: 10px;
+}
+
+.deleteBtn:hover{
+    background-color: #ff0000;
+}
