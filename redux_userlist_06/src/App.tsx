@@ -4,10 +4,12 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
-import { addUserList } from "../src/actions/actions";
-import { UserDetails } from "./interfaces";
+
 import withLoading from "./components/Dashboard/withLoading";
 import GetList from "./components/Dashboard/getList";
+
+import { addUserList } from "../src/actions/actions";
+import { UserDetails } from "./interfaces";
 
 import "./App.css";
 

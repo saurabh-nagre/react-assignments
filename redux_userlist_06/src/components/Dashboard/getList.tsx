@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import UserProfile from "./userProfile";
 
 import { UserDetails } from "../../interfaces";
+
 import * as constants from "../../constants/constants";
 
 import "./styles.css";
